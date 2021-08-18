@@ -11,9 +11,10 @@ const getTeamById = async (request, response) => {
 
   const matchingTeam = await models.Teams.findOne({ where: { id } })
 
-  return matchingTeam
-    ? response.send(matchingTeam)
-    : response.sendStatus(404)
+  // If no matching team was found, then send a 404 error
+  if (!matchingTeam) return response.status(404)
+
+  return response.send(matchingTeam)
 }
 
 const saveNewTeam = async (request, response) => {

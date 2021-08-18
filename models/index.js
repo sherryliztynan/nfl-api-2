@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const TeamsModel = require('./teams')
 
-const connection = new Sequelize('nfl', 'football', 'F00tB4LL!', {
+const connection = new Sequelize('nfl', 'nflUser', 'password1234', {
   host: 'localhost', dialect: 'mysql',
 })
 

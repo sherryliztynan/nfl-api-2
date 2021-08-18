@@ -1,11 +1,17 @@
-CREATE DATABASE nfl;
+-- Drop and Add database
+DROP DATABASE IF EXISTS nfldb;
+CREATE DATABASE nfldb;
 
-CREATE USER 'football'@'localhost' IDENTIFIED WITH mysql_native_password BY 'F00tB4LL!';
+-- Drop and add user
+DROP USER IF EXISTS 'nflUser'@'localhost';
+CREATE USER 'nflUser'@'localhost' IDENTIFIED BY 'Cjc3425@';
 
-GRANT ALL ON nfl.* TO 'football'@'localhost';
+-- Grant our user access to all tables to the database
+GRANT ALL PRIVILEGES ON nfldb.* to 'nflUser'@'localhost';
+FLUSH PRIVILEGES;
 
-USE nfl;
-
+-- Create table schema
+USE nfldb;
 CREATE TABLE teams (
   id INT auto_increment,
   location VARCHAR(255),
@@ -19,35 +25,46 @@ CREATE TABLE teams (
   PRIMARY KEY(id)
 );
 
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Buffalo', 'Bills', 'BUF', 'AFC', 'East');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Miami', 'Dolphins', 'MIA', 'AFC', 'East');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('New England', 'Patriots', 'NE', 'AFC', 'East');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('New York', 'Jets', 'NYJ', 'AFC', 'East');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Baltimore', 'Ravens', 'BAL', 'AFC', 'North');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Cincinnati', 'Bengals', 'CIN', 'AFC', 'North');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Cleveland', 'Browns', 'CLE', 'AFC', 'North');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Pittsburgh', 'Steelers', 'PIT', 'AFC', 'North');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Houston', 'Texans', 'HOU', 'AFC', 'South');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Indianapolis', 'Colts', 'IND', 'AFC', 'North');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Jacksonville', 'Jaguars', 'JAX', 'AFC', 'North');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Tennessee', 'Titans', 'TEN', 'AFC', 'North');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Denver', 'Broncos', 'DEN', 'AFC', 'West');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Kansas City', 'Chiefs', 'KC', 'AFC', 'West');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Los Angeles', 'Chargers', 'LAC', 'AFC', 'West');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Oakland', 'Raiders', 'OAK', 'AFC', 'West');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Dallas', 'Cowboys', 'DAL', 'NFC', 'East');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('New York', 'Giants', 'NYG', 'NFC', 'East');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Philadelphia', 'Eagles', 'PHI', 'NFC', 'East');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Washington', 'Redskins', 'WSH', 'NFC', 'East');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Chicago', 'Bears', 'CHI', 'NFC', 'North');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Detriot', 'Lions', 'DET', 'NFC', 'North');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Green Bay', 'Packers', 'GB', 'NFC', 'North');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Minnesota', 'Vikings', 'MIN', 'NFC', 'North');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Atlanta', 'Falcons', 'ATL', 'NFC', 'South');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Carolina', 'Panthers', 'CAR', 'NFC', 'South');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('New Orleans', 'Saints', 'NO', 'NFC', 'South');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Tampa Bay', 'Buccaneers', 'TB', 'NFC', 'South');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Arizona', 'Cardinals', 'ARI', 'NFC', 'West');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Los Angeles', 'Rams', 'LAR', 'NFC', 'West');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('San Francisco', '49ers', 'SF', 'NFC', 'West');
-INSERT INTO teams (location, mascot, abbreviation, conference, division) VALUES ('Seattle', 'Seahawks', 'SEA', 'NFC', 'West');
+-- Insert data
+USE nfldb;
+INSERT INTO teams (location, mascot, abbreviation, conference, division)
+VALUES 
+('Buffalo', 'Bills', 'BUF', 'AFC', 'East'),
+('Miami', 'Dolphins', 'MIA', 'AFC', 'East'),
+('New England', 'Patriots', 'NE', 'AFC', 'East'),
+('New York', 'Jets', 'NYJ', 'AFC', 'East'),
+('Baltimore', 'Ravens', 'BAL', 'AFC', 'North'),
+('Cincinnati', 'Bengals', 'CIN', 'AFC', 'North'),
+('Cleveland', 'Browns', 'CLE', 'AFC', 'North'),
+('Pittsburgh', 'Steelers', 'PIT', 'AFC', 'North'),
+('Houston', 'Texans', 'HOU', 'AFC', 'South'),
+('Indianapolis', 'Colts', 'IND', 'AFC', 'North'),
+('Jacksonville', 'Jaguars', 'JAX', 'AFC', 'North'),
+('Tennessee', 'Titans', 'TEN', 'AFC', 'North'),
+('Denver', 'Broncos', 'DEN', 'AFC', 'West'),
+('Kansas City', 'Chiefs', 'KC', 'AFC', 'West'),
+('Los Angeles', 'Chargers', 'LAC', 'AFC', 'West'),
+('Oakland', 'Raiders', 'OAK', 'AFC', 'West'),
+('Dallas', 'Cowboys', 'DAL', 'NFC', 'East'),
+('New York', 'Giants', 'NYG', 'NFC', 'East'),
+('Philadelphia', 'Eagles', 'PHI', 'NFC', 'East'),
+('Washington', 'Redskins', 'WSH', 'NFC', 'East'),
+('Chicago', 'Bears', 'CHI', 'NFC', 'North'),
+('Detriot', 'Lions', 'DET', 'NFC', 'North'),
+('Green Bay', 'Packers', 'GB', 'NFC', 'North'),
+('Minnesota', 'Vikings', 'MIN', 'NFC', 'North'),
+('Atlanta', 'Falcons', 'ATL', 'NFC', 'South'),
+('Carolina', 'Panthers', 'CAR', 'NFC', 'South'),
+('New Orleans', 'Saints', 'NO', 'NFC', 'South'),
+('Tampa Bay', 'Buccaneers', 'TB', 'NFC', 'South'),
+('Arizona', 'Cardinals', 'ARI', 'NFC', 'West'),
+('Los Angeles', 'Rams', 'LAR', 'NFC', 'West'),
+('San Francisco', '49ers', 'SF', 'NFC', 'West'),
+('Seattle', 'Seahawks', 'SEA', 'NFC', 'West');
+
+
+-- Display our data after creation
+select * from nfldb.teams;
+
+
+
